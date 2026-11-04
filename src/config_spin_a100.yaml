@@ -1,0 +1,46 @@
+# SPIN config for single A100 40GB (project file, NOT official).
+# Adapted from official uclaml/SPIN configs/config.yaml:
+#   - 8xA80GB DeepSpeed ZeRO-3 full-finetune Zephyr-7B  ->  1xA100-40GB Qwen3-0.6B
+#   - Same algorithm (beta, SPIN loss untouched). Only infra/batch changed.
+# Fill <SPIN_DATA_DIR> and <MODEL_PATH> per iteration via app.py or CLI override.
+
+model_name_or_path: <MODEL_PATH>
+model_revision: main
+
+dataset_mixer:
+  <SPIN_DATA_DIR>: 1.0
+dataset_splits:
+  - train
+  - test
+preprocessing_num_workers: 4
+
+# ---- Trainer (single-GPU A100) ----
+bf16: true
+fp16: false
+beta: 0.1
+do_eval: false
+eval_strategy: "no"
+gradient_accumulation_steps: 8
+gradient_checkpointing: true
+learning_rate: 5.0e-7
+log_level: info
+logging_steps: 10
+lr_scheduler_type: linear
+max_length: 1024
+max_prompt_length: 512
+num_train_epochs: 2
+optim: adamw_torch
+output_dir: <OUTPUT_DIR>
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+push_to_hub: false
+save_strategy: "epoch"
+save_total_limit: 1
+seed: 42
+# transformers 5.x removed warmup_ratio -> use warmup_steps.
+# ~= warmup_ratio 0.1: 3800 rows / bs32 = ~119 steps/epoch x2 = ~238 steps -> 24.
+warmup_steps: 24
+torch_dtype: bfloat16
+trust_remote_code: true
+use_flash_attention_2: false
+report_to: "none"

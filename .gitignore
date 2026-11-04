@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific - artifacts & data (không commit lên GitHub)
+artifacts/
+artifacts_full/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.arrow
+*.parquet
+.env
+.env.local
+TEMP_*.json
+
+# Data samples (chỉ giữ .gitkeep, dữ liệu lớn lưu ngoài repo)
+data/*.jsonl
+data/*.json
+data/*.parquet
+data/*.arrow
+
+# Modal
+modal_secret/
