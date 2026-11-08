@@ -125,7 +125,7 @@ Answer:
 - `enable_thinking=False`
 
 **Hạ tầng**
-- 1× A100 40GB (Modal), torch 2.14, transformers 5.17, trl 1.13, accelerate 1.15
+- 1× A100 40GB, torch 2.14, transformers 5.17, trl 1.13, accelerate 1.15
 - Mỗi vòng SPIN: generate 4000 mẫu → chuyển sang format official → train → eval.
 
 **Đánh giá**
